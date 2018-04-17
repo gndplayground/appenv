@@ -1,0 +1,8 @@
+language: go
+  go:
+    - "1.x"
+script:
+  - make test_cov_ci
+after_script:
+  - go get github.com/mattn/goveralls
+  - goveralls -coverprofile=coverage.out -service=travis-ci -repotoken=$repo_token
