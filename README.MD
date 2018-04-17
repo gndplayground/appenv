@@ -1,0 +1,2 @@
+#appenv [![Build Status](https://travis-ci.org/gndplayground/appenv.svg?branch=master)](https://travis-ci.org/gndplayground/appenv)
+[![Coverage Status](https://coveralls.io/repos/github/gndplayground/appenv/badge.svg?branch=master)](https://coveralls.io/github/gndplayground/appenv?branch=master)

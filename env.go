@@ -1,12 +1,11 @@
 package appenv
 
-
 import (
 	"errors"
 	"os"
 	"reflect"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 var mockAbleStringCov = stringConv
@@ -488,4 +487,3 @@ func setInt32(f reflect.Value, v interface{}) {
 func setFloat32(f reflect.Value, v interface{}) {
 	f.Set(reflect.ValueOf(float32(v.(float64))))
 }
-

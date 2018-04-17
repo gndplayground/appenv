@@ -2,10 +2,10 @@ package appenv
 
 import (
 	"errors"
+	"fmt"
 	"os"
 	"reflect"
 	"testing"
-	"fmt"
 )
 
 func loopConvert(mapKey map[reflect.Kind]string, finalType string, t *testing.T) {
@@ -112,7 +112,6 @@ func TestConTypeFunctionShouldFail(t *testing.T) {
 		t.Error("Should return error when convert string not true or false to bool")
 	}
 }
-
 
 type testListUint struct {
 	Uint   uint
