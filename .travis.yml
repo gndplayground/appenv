@@ -1,6 +1,6 @@
 language: go
-  go:
-    - "1.x"
+go:
+  - "1.x"
 script:
   - make test_cov_ci
 after_script:
