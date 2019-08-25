@@ -167,7 +167,7 @@ func Init(c interface{}) (err error) {
 
 						switch fType {
 
-						case reflect.String:
+						case reflect.Bool, reflect.String:
 							f.Set(reflect.ValueOf(finalVal))
 
 						case reflect.Uint64, reflect.Int64, reflect.Float64:

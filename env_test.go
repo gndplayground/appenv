@@ -132,6 +132,7 @@ type testListInt struct {
 func TestInitShouldSuccess(t *testing.T) {
 
 	type configTestSuccess struct {
+		Bool         bool    `env:"TEST_ENV_Bool" envDefault:"false"`
 		Uint         uint    `env:"TEST_ENV_Uint" envDefault:"10"`
 		Uint8        uint8   `env:"TEST_ENV_Uint8" envDefault:"10"`
 		Uint16       uint16  `env:"TEST_ENV_Uint16" envDefault:"10"`
@@ -154,7 +155,11 @@ func TestInitShouldSuccess(t *testing.T) {
 
 	Init(&c)
 
-	if c.StringFromOS != "bonjour" || reflect.ValueOf(c.String).Kind().String() != "string" {
+	if c.Bool != false || reflect.ValueOf(c.Bool).Kind().String() != "bool" {
+		t.Error("Failed set Bool")
+	}
+
+	if c.StringFromOS != "bonjour" || reflect.ValueOf(c.StringFromOS).Kind().String() != "string" {
 		t.Error("Failed set StringFromOS")
 	}
 
@@ -210,6 +215,96 @@ func TestInitShouldSuccess(t *testing.T) {
 		t.Error("Failed set Int64")
 	}
 
+}
+
+func TestSetEnvShouldSuccess(t *testing.T) {
+
+	type configTestSuccess struct {
+		Bool         bool    `env:"TEST_ENV_Bool" envDefault:"false"`
+		Uint         uint    `env:"TEST_ENV_Uint" envDefault:"10"`
+		Uint8        uint8   `env:"TEST_ENV_Uint8" envDefault:"10"`
+		Uint16       uint16  `env:"TEST_ENV_Uint16" envDefault:"10"`
+		Uint32       uint32  `env:"TEST_ENV_Uint32" envDefault:"10"`
+		Uint64       uint64  `env:"TEST_ENV_Uint64" envDefault:"10"`
+		Int          int     `env:"TEST_ENV_Int" envDefault:"-10"`
+		Int8         int8    `env:"TEST_ENV_Int8" envDefault:"-10"`
+		Int16        int16   `env:"TEST_ENV_Int16" envDefault:"-10"`
+		Int32        int32   `env:"TEST_ENV_Int32" envDefault:"-10"`
+		Int64        int64   `env:"TEST_ENV_Int64" envDefault:"-10"`
+		Float32      float32 `env:"TEST_ENV_FLOAT32" envDefault:"3.2"`
+		Float64      float64 `env:"TEST_ENV_FLOAT64" envDefault:"6.5"`
+		String       string  `env:"TEST_ENV_STRING" envDefault:"hello"`
+		StringFromOS string  `env:"TEST_ENV_STRINGFromOS" envDefault:"hello"`
+	}
+
+	os.Setenv("TEST_ENV_Bool", "true")
+	os.Setenv("TEST_ENV_Uint", "11")
+	os.Setenv("TEST_ENV_Uint8", "12")
+	os.Setenv("TEST_ENV_Uint16", "13")
+	os.Setenv("TEST_ENV_Uint32", "14")
+	os.Setenv("TEST_ENV_Uint64", "15")
+	os.Setenv("TEST_ENV_Int", "16")
+	os.Setenv("TEST_ENV_Int8", "17")
+	os.Setenv("TEST_ENV_Int16", "18")
+	os.Setenv("TEST_ENV_Int32", "19")
+	os.Setenv("TEST_ENV_Int64", "20")
+	os.Setenv("TEST_ENV_FLOAT32", "3.5")
+	os.Setenv("TEST_ENV_FLOAT64", "4.5")
+	os.Setenv("TEST_ENV_STRING", "bonjour")
+
+
+	c := configTestSuccess{}
+
+	Init(&c)
+
+	if c.Bool != true || reflect.ValueOf(c.Bool).Kind().String() != "bool" {
+		t.Error("Failed set Bool")
+	}
+
+	if c.Uint != 11 || reflect.ValueOf(c.Uint).Kind().String() != "uint" {
+		t.Error("Failed set Uint")
+	}
+
+	if c.Uint8 != 12 || reflect.ValueOf(c.Uint8).Kind().String() != "uint8" {
+		t.Error("Failed set Uint8")
+	}
+
+	if c.Uint16 != 13 || reflect.ValueOf(c.Uint16).Kind().String() != "uint16" {
+		t.Error("Failed set Uint16")
+	}
+
+	if c.Uint32 != 14 || reflect.ValueOf(c.Uint32).Kind().String() != "uint32" {
+		t.Error("Failed set Uint32")
+	}
+
+	if c.Uint64 != 15 || reflect.ValueOf(c.Uint64).Kind().String() != "uint64" {
+		t.Error("Failed set Uint64")
+	}
+	
+	if c.Int != 16 || reflect.ValueOf(c.Int).Kind().String() != "int" {
+		t.Error("Failed set Int")
+	}
+
+	if c.Int8 != 17 || reflect.ValueOf(c.Int8).Kind().String() != "int8" {
+		t.Error("Failed set Int8")
+	}
+
+	if c.Int16 != 18 || reflect.ValueOf(c.Int16).Kind().String() != "int16" {
+		t.Error("Failed set Int16")
+	}
+
+	if c.Int32 != 19 || reflect.ValueOf(c.Int32).Kind().String() != "int32" {
+		t.Error("Failed set Int32")
+	}
+
+	if c.Int64 != 20 || reflect.ValueOf(c.Int64).Kind().String() != "int64" {
+		t.Error("Failed set Int64")
+	}
+
+	if c.String!= "bonjour" || reflect.ValueOf(c.String).Kind().String() != "string" {
+		t.Error("Failed set StringFromOS")
+	}
+	
 }
 
 func TestInitShouldSuccessCaseArray(t *testing.T) {
